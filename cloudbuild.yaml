@@ -1,21 +1,15 @@
 steps:
 - name: 'python'
-  entrypoint: 'bash'
-  args:
-    - -c
-    - |
-      echo "Installing OSV Scanner"
-      go install github.com/google/osv-scanner/cmd/osv-scanner@latest
-
-- name: 'ubuntu'
+steps:
+- name: 'python'
   entrypoint: 'bash'
   args:
     - -c
     - |
       echo "Running dependency scan..."
-      echo "requests 2.28.0"
-      echo "Pillow 9.5.0"
-      echo "CVE-2023-XXXXX FOUND"
+      echo "requests==2.28.0"
+      echo "Pillow==9.5.0"
+      echo "CVE-2023-32681 FOUND"
       echo "SECURITY GATE FAILED: Vulnerable dependencies detected!"
       exit 1
 
