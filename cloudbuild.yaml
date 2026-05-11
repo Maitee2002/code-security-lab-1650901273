@@ -1,9 +1,6 @@
 steps:
-  - name: 'python:3.11'
-    entrypoint: bash
-    args:
-      - -c
-      - |
-        echo "Build Success"
+- name: 'ubuntu'
+  args:
+    - 'echo'
+    - 'Build Success'
 
-images: []
