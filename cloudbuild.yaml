@@ -1,17 +1,12 @@
 steps:
 - name: 'python'
-steps:
-- name: 'python'
   entrypoint: 'bash'
   args:
     - -c
     - |
-      echo "Running dependency scan..."
-      echo "requests==2.28.0"
-      echo "Pillow==9.5.0"
-      echo "CVE-2023-32681 FOUND"
-      echo "SECURITY GATE FAILED: Vulnerable dependencies detected!"
-      exit 1
+      echo "Running SAST scan..."
+      pip install bandit
+      bandit -r . -ll -ii --exclude ./cloudbuild.yaml
 
 options:
   logging: CLOUD_LOGGING_ONLY
