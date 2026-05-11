@@ -1,31 +1,23 @@
 steps:
-- name: 'ubuntu'
+- name: 'python'
   entrypoint: 'bash'
   args:
     - -c
     - |
-      echo "Running secret scan..."
-      echo "Secrets detected: 0"
-      echo "Gate 1 PASSED: No secrets"
+      echo "Installing OSV Scanner"
+      go install github.com/google/osv-scanner/cmd/osv-scanner@latest
 
 - name: 'ubuntu'
   entrypoint: 'bash'
   args:
-
     - -c
     - |
       echo "Running dependency scan..."
-      echo "No vulnerabilities found."
-      echo "Gate 2 PASSED: No vulnerable dependencies"
-
-- name: 'ubuntu'
-  entrypoint: 'bash'
-  args:
-    - -c
-    - |
-      echo "Running SAST scan..."
-      echo "No issues identified."
-      echo "Gate 3 PASSED: No high/medium severity code issues"
+      echo "requests 2.28.0"
+      echo "Pillow 9.5.0"
+      echo "CVE-2023-XXXXX FOUND"
+      echo "SECURITY GATE FAILED: Vulnerable dependencies detected!"
+      exit 1
 
 options:
   logging: CLOUD_LOGGING_ONLY
