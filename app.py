@@ -1,5 +1,11 @@
-password = "123456"
-api_key = "my-secret-key"
-print("Hello World")
+import subprocess
+import pickle
 
-# trigger build
+def run_cmd(host):
+    return subprocess.check_output(f"ping -c 1 {host}", shell=True)  # B602
+
+def calc(expr):
+    return eval(expr)  # B307
+
+def load(data):
+    return pickle.loads(data)  # B301
